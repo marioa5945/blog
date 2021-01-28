@@ -3,6 +3,7 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import * as CopyPlugin from 'copy-webpack-plugin';
 
 config.mode = 'production';
+config.devtool = false;
 (config.output as any).filename = '[name].[contenthash].bundle.js';
 (config.module as any).rules.push({
   test: /\.(js|jsx|ts|tsx)$/,
