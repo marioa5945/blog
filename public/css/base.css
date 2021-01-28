@@ -1,0 +1,17 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, Times, 'Times New Roman', serif;
+}
+
+a {
+  color: #fff;
+}
+
+a:hover {
+  color: #f20;
+}

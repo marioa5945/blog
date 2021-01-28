@@ -1,0 +1,79 @@
+.markdown {
+  color: #ddd;
+  font-size: 14px;
+  font-family: Georgia, Times, 'Times New Roman', serif;
+  padding-bottom: 10px;
+
+  h1 {
+    font-size: 30px;
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+  }
+
+  h2 {
+    font-size: 24px;
+    line-height: 35px;
+    margin: 30px 0 10px;
+    border-bottom: 1px solid #333;
+  }
+
+  h3 {
+    font-size: 18px;
+    line-height: 25px;
+    margin: 10px 0;
+  }
+
+  ul {
+    padding-left: 20px;
+    li {
+      line-height: 25px;
+      font-size: 14px;
+    }
+  }
+
+  b {
+    color: #58a6ff;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 20px;
+    color: #c9d1d9;
+  }
+
+  pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #111;
+    border-radius: 6px;
+    margin: 10px 0 20px;
+  }
+
+  .annotate {
+    color: #5b9b4c;
+  }
+
+  // code css
+  .css {
+    color: #d4d4d4;
+    .key {
+      color: #ddb973;
+    }
+    .variable {
+      color: #cf80c3;
+    }
+    .attrName {
+      color: #89deff;
+    }
+    .attrValue {
+      color: #d98e73;
+    }
+    .value {
+      color: #afcfa4;
+    }
+  }
+}

@@ -1,0 +1,128 @@
+nav.leftNav {
+  position: fixed;
+  background-color: #242321;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 10px;
+  text-align: center;
+  overflow-y: auto;
+  transition-duration: 0.2s;
+  z-index: 5;
+
+  > img {
+    display: block;
+    margin: 0 auto 10px;
+    width: 96px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  > h3 {
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 30px;
+    text-decoration: overline;
+    cursor: pointer;
+
+    > span {
+      color: #f20;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  > p {
+    max-width: 500px;
+    margin: 0 auto;
+    height: 55px;
+    padding: 10px 5px 0px 25px;
+    text-align: left;
+
+    font-size: 13px;
+    line-height: 18px;
+    position: relative;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &::after {
+      display: block;
+      content: '';
+      position: absolute;
+      left: 25px;
+      right: 5px;
+      bottom: -1px;
+      border-bottom: 1px solid #393937;
+    }
+
+    > span {
+      display: block;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      color: #9c9c9b;
+
+      &.title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #ddd;
+      }
+
+      > span {
+        display: inline-block;
+        padding-right: 5px;
+        color: #ddd;
+      }
+    }
+
+    &:hover {
+      background-color: #464647;
+      &::after {
+        display: none;
+      }
+    }
+    &.active {
+      background-color: #9e8329;
+
+      &::after {
+        display: none;
+      }
+
+      > span {
+        color: #444;
+        &.title {
+          color: #ddd;
+        }
+        > span {
+          color: #333;
+        }
+      }
+    }
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &.active {
+    width: 250px;
+    border-right: 1px solid #000;
+
+    > p {
+      &:hover {
+        background: none;
+        opacity: 0.8;
+      }
+
+      &.active {
+        background: #9e8329;
+        opacity: 1;
+      }
+    }
+  }
+}
