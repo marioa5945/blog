@@ -32,7 +32,7 @@ const ReactMd = (props: ifsReactMdProps): React.ReactElement => {
 
   const toEm = (str: string): string => {
     let value = str;
-    const arr = /[^/]_(.+?)_/.exec(str);
+    const arr = /_([^ ]+?)_|[^/]\*([^ ]+?)\*/.exec(str);
     if (arr) {
       value = str.replace(arr[0], `<em>${arr[1]}</em>`);
       value = toEm(value);
@@ -43,16 +43,16 @@ const ReactMd = (props: ifsReactMdProps): React.ReactElement => {
   const toBlockquote = (str: string): string => {
     let value = str;
     if (value.slice(0, 2) === '> ') {
-      value = `<blockquote><p>${value.slice(2)}</p></blockquote>`;
+      value = `<blockquote><span>></span>${value.slice(2)}</blockquote>`;
     }
     return value;
   };
 
   let listStart = false;
   const toList = (str: string): string => {
-    if (str === '' && listStart) {
+    if (str.slice(0, 2) !== '- ' && listStart) {
       listStart = false;
-      return '</ul>';
+      return `</ul>${str}`;
     }
 
     const arr = / *- (.+)/.exec(str);
@@ -69,18 +69,150 @@ const ReactMd = (props: ifsReactMdProps): React.ReactElement => {
   };
 
   let isPre = false;
+  let preName = '';
   const toPre = (str: string): string => {
     let value = str;
     const arr = /^```(.*)/.exec(str);
     if (arr) {
       if (isPre) {
+        preName = '';
         value = str.replace(arr[0], '\n</code></pre>');
       } else {
-        value = str.replace(arr[0], `<pre><code class="${arr[1]}">`);
+        preName = arr[1] ?? '';
+        value = str.replace(arr[0], `<pre><code class="${preName}">`);
       }
       isPre = !isPre;
     }
     return value;
+  };
+
+  /**
+   * css key word
+   */
+  const toCss = (str: string): string => {
+    let value = str;
+    if (preName === 'css') {
+      // variable
+      let arr = /@[^ ]+/.exec(value);
+      if (arr) {
+        value = value.replace(arr[0], `<span class="variable">${arr[0]}</span>`);
+      }
+
+      // css name
+      arr = /(^\.[^ ]+| \.[^ ]+) {/.exec(value);
+      if (arr) {
+        value = value.replace(arr[1], `<span class="cssName">${arr[1]}</span>`);
+      }
+
+      // attr name
+      arr = /([^ (]+):/.exec(value);
+      if (arr) {
+        value = value.replace(arr[1], `<span class="attrName">${arr[1]}</span>`);
+      }
+
+      arr = /url\((.+?)\)/.exec(value);
+      if (arr) {
+        value = value.replace(arr[1], `<span class="attrName">${arr[1]}</span>`);
+      }
+      value = value.replace('url(', '<span class="key">url</span>(');
+
+      // num
+      value = cssNumRepace(value);
+    }
+
+    return value;
+  };
+
+  const cssNumRepace = (str: string): string => {
+    const arr = / (\d+\.?\d*)/g.exec(str);
+    if (arr) {
+      str = str.replace(arr[0], `<span class="num">${arr[1]}</span>`);
+      str = cssNumRepace(str);
+    }
+
+    return str;
+  };
+
+  /**
+   * ts key word
+   * @param str
+   */
+  const toTs = (str: string): string => {
+    let value = str;
+    if (preName === 'ts' || preName === 'js') {
+      const keys: Array<{
+        name: string;
+        list: Array<string>;
+      }> = [
+        {
+          name: 'obj',
+          list: ['console', 'window', 'devicePixelRatio'],
+        },
+        {
+          name: 'fun',
+          list: ['log'],
+        },
+        {
+          name: 'key',
+          list: ['const', 'let', 'typeof', 'instanceof', 'function', 'type', 'new', '=>', 'extends'],
+        },
+        {
+          name: 'type',
+          list: ['unknow', 'string', 'Array', 'number', 'never', 'Error', 'T', 'any', 'undefined', 'null'],
+        },
+        {
+          name: 'symbol',
+          list: ['throw', 'return', 'if', 'else', 'as', 'import', 'from', 'require'],
+        },
+      ];
+
+      for (const item of keys) {
+        const re = new RegExp(`(?:^|[^\\w>'])(${item.list.join('|')})[^\\w]`);
+        value = tsRepace(re, value, item.name);
+      }
+
+      // key
+      value = tsRepace(/ (\*) /, value, 'key');
+
+      // num
+      value = tsRepace(/[( [](\d+)[ );,\]]/, value, 'num');
+
+      // string
+      value = tsRepace(/[( []('.+?')/, value, 'string');
+
+      // fun
+      value = tsRepace(/ ([^ >.]+?)\(/, value, 'fun');
+      value = tsRepace(/\.([^ >]+?)\(/, value, 'fun');
+      value = tsRepace(/ ([^ >]+?) = \(/, value, 'fun');
+      value = tsRepace(/^([^ >]+?)\(/, value, 'fun');
+
+      // obj
+      value = tsRepace(/\(([^: >]+?)\)/, value, 'obj');
+      value = tsRepace(/[ (]([^ >(]+?): /, value, 'obj');
+      value = tsRepace(/^(\w+) /, value, 'obj');
+      value = tsRepace(/ (\w+?)</, value, 'obj');
+      value = tsRepace(/ ([^ >}.]+) =/, value, 'obj');
+      value = tsRepace(/ *([^ ><[.']+?)[.[]/, value, 'obj');
+      value = tsRepace(/\.(\w+?)[ ;]/, value, 'obj');
+      value = tsRepace(/= (\w+);$/, value, 'obj');
+      value = tsRepace(/[(, {[](\w+), /, value, 'obj');
+      value = tsRepace(/, (\w+?)[,)}\]]/, value, 'obj');
+      value = tsRepace(/{ (\w+) /, value, 'obj');
+      value = tsRepace(/\((\w+?) /, value, 'obj');
+      value = tsRepace(/ (\w+) /, value, 'obj');
+    }
+
+    return value;
+  };
+
+  const tsRepace = (re: RegExp, str: string, className: string): string => {
+    const arr = re.exec(str);
+    if (arr) {
+      const value = arr[0].replace(arr[1], `<span class="${className}">${arr[1]}</span>`);
+      str = str.replace(arr[0], value);
+      str = tsRepace(re, str, className);
+    }
+    return str;
   };
 
   /**
@@ -92,7 +224,10 @@ const ReactMd = (props: ifsReactMdProps): React.ReactElement => {
       if (arr[i] !== '') {
         arr[i] = toPre(arr[i]);
         arr[i] = toAnnotate(arr[i]);
-        if (!isPre) {
+        if (isPre && arr[i].indexOf('class="annotate"') === -1) {
+          arr[i] = toCss(arr[i]);
+          arr[i] = toTs(arr[i]);
+        } else {
           if (/^(\w|[\u2E80-\u9FFF])/.exec(arr[i]) && arr[i + 1] === '') {
             arr[i] = `<p>${arr[i]}</p>`;
           }
@@ -118,11 +253,13 @@ const ReactMd = (props: ifsReactMdProps): React.ReactElement => {
 
   const toAnnotate = (str: string) => {
     let value = str;
-    const arr = /(\/\*.+?\*\/)/.exec(str);
-    if (arr) {
-      value = str.replace(arr[0], `<span class="annotate">${arr[1]}</span>`);
-      value = toEm(value);
-    }
+    value = tsRepace(/^ *(\/\*.+?\*\/)/, value, 'annotate');
+    value = tsRepace(/^(\/\*.+)/, value, 'annotate');
+    value = tsRepace(/^ (\* .+)/, value, 'annotate');
+    value = tsRepace(/^ (\*\/)$/, value, 'annotate');
+    value = tsRepace(/ +(\/\/ .+)/, value, 'annotate');
+    value = tsRepace(/^(\/\/ .+)/, value, 'annotate');
+
     return value;
   };
 

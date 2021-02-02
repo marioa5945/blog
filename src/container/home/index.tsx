@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as H from 'history';
+import React from 'react';
+import H from 'history';
 import './style.scss';
 
 interface _router {

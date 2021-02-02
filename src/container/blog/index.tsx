@@ -1,5 +1,6 @@
-import * as React from 'react';
-import * as H from 'history';
+import React from 'react';
+import H from 'history';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import ReactMd from '@components/react-md/';
 import Nav from '@components/nav/';
@@ -22,9 +23,15 @@ interface ifsDirectory {
   description: string;
 }
 
+function mapStateToProps(state: { [key: string]: unknown }) {
+  return { state };
+}
+
+@(connect(mapStateToProps) as any)
 export default class PageHome extends React.PureComponent<_router, ifsState> {
   constructor(props: _router) {
     super(props);
+    console.log(connect(mapStateToProps));
 
     this.state = {
       activeId: '',
@@ -35,7 +42,7 @@ export default class PageHome extends React.PureComponent<_router, ifsState> {
 
   async componentDidMount(): Promise<void> {
     try {
-      const directory = await axios.get('/api/directory.json');
+      const directory = await axios.get('/api/blog/directory.json');
       this.setState({ directory: directory.data });
 
       const value = /\/blog\/(.+)/.exec(window.location.href);
@@ -55,7 +62,7 @@ export default class PageHome extends React.PureComponent<_router, ifsState> {
     const { history } = this.props;
     if (activeId !== '') {
       try {
-        const contentArr = await axios.get(`/api/${activeId}.json`);
+        const contentArr = await axios.get(`/api/blog/${activeId}.json`);
         this.setState({ markdown: contentArr.data.join('\n') });
       } catch (error) {
         console.error(error);
@@ -66,7 +73,7 @@ export default class PageHome extends React.PureComponent<_router, ifsState> {
     history.push(activeId === '' ? '/blog' : `/blog/${activeId}`);
   };
 
-  render(): React.ReactElement {
+  render(): JSX.Element {
     const { markdown, directory, activeId } = this.state;
     const { history } = this.props;
 

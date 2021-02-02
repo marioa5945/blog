@@ -1,16 +1,16 @@
 {
-  "name": "blog",
+  "name": "marioa",
   "version": "1.0.0",
   "private": true,
-  "description": "Blog program",
+  "description": "This project include Component library and blog",
   "main": "./src/app.tsx",
   "scripts": {
     "start": "ts-node ./scripts/server.ts",
-    "build": "webpack --config ./scripts/webpack.pro.ts",
+    "build": "npm run api && webpack --config ./scripts/webpack.pro.ts",
     "test": "webpack --config ./scripts/config.js",
     "api": "ts-node ./scripts/api.ts"
   },
-  "repository": "git@github.com:marioa5945/blog.git",
+  "repository": "git@github.com:marioa5945/marioa.git",
   "keywords": [
     "blog"
   ],
@@ -21,9 +21,9 @@
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/marioa5945/blog/issues"
+    "url": "https://github.com/marioa5945/marioa/issues"
   },
-  "homepage": "https://github.com/marioa5945/blog",
+  "homepage": "https://marioa5945.github.io/",
   "dependencies": {
     "@babel/core": "^7.12.3",
     "@babel/plugin-transform-runtime": "^7.12.1",
@@ -45,8 +45,11 @@
     "@types/express": "^4.17.11",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.16",
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
+    "@types/redux": "^3.6.0",
+    "@types/webpack-env": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "^4.6.0",
     "@typescript-eslint/parser": "^4.6.0",
     "babel-loader": "^8.1.0",
@@ -62,6 +65,7 @@
     "http-proxy-middleware": "^1.0.6",
     "prettier": "2.1.2",
     "redux-devtools": "^3.7.0",
+    "redux-devtools-extension": "^2.13.8",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.4",
     "style-loader": "^2.0.0",
@@ -70,6 +74,7 @@
     "typescript": "^4.0.3",
     "webpack": "^5.17.0",
     "webpack-cli": "^4.4.0",
-    "webpack-dev-middleware": "^4.1.0"
+    "webpack-dev-middleware": "^4.1.0",
+    "webpack-hot-middleware": "^2.25.0"
   }
 }

@@ -1,12 +1,10 @@
 import { resolve } from 'path';
-import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { Configuration } from 'webpack';
 
 export default {
   mode: 'development',
-  entry: {
-    main: './src/app.tsx',
-  },
+  entry: ['./src/app.tsx'],
   devtool: 'inline-source-map',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],

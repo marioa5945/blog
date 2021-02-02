@@ -1,3 +1,4 @@
+import webpack from 'webpack';
 import config from './webpack.config';
 
 (config.module as any).rules.push({
@@ -16,5 +17,7 @@ import config from './webpack.config';
     },
   ],
 });
+(config.plugins as any).push(new webpack.HotModuleReplacementPlugin());
+config.entry = ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', './src/app.tsx'];
 
 export default { ...config };

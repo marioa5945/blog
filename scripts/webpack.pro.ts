@@ -1,6 +1,6 @@
 import config from './webpack.config';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import * as CopyPlugin from 'copy-webpack-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 
 config.mode = 'production';
 config.devtool = false;

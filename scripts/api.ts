@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const main = () => {
   const sourcePath = resolve('.', './data');
-  const targetPath = resolve('.', './public/api');
+  let targetPath = resolve('.', './public/api');
   // markdown file list
   const mdList = fs
     .readdirSync(sourcePath)
@@ -13,6 +13,10 @@ const main = () => {
 
   // delete old api
   rimraf.sync(targetPath);
+  // create new api folder
+  fs.mkdirSync(targetPath);
+  // set new api folder url
+  targetPath += '/blog';
   // create new api folder
   fs.mkdirSync(targetPath);
 

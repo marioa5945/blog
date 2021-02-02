@@ -2,7 +2,7 @@
   color: #ddd;
   font-size: 14px;
   font-family: Georgia, Times, 'Times New Roman', serif;
-  padding-bottom: 10px;
+  padding-bottom: 50px;
 
   h1 {
     font-size: 30px;
@@ -13,7 +13,7 @@
   }
 
   h2 {
-    font-size: 24px;
+    font-size: 22px;
     line-height: 35px;
     margin: 30px 0 10px;
     border-bottom: 1px solid #333;
@@ -26,7 +26,7 @@
   }
 
   ul {
-    padding-left: 20px;
+    padding-left: 25px;
     li {
       line-height: 25px;
       font-size: 14px;
@@ -41,6 +41,21 @@
     font-size: 14px;
     line-height: 20px;
     color: #c9d1d9;
+  }
+
+  blockquote {
+    background-color: #222;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    line-height: 25px;
+
+    > span {
+      color: #5b9b4c;
+      display: inline-block;
+      font-weight: bold;
+      margin-right: 10px;
+    }
   }
 
   pre {
@@ -60,7 +75,7 @@
   // code css
   .css {
     color: #d4d4d4;
-    .key {
+    .cssName {
       color: #ddb973;
     }
     .variable {
@@ -72,7 +87,35 @@
     .attrValue {
       color: #d98e73;
     }
-    .value {
+    .num {
+      color: #afcfa4;
+    }
+    .key {
+      color: #dcdda4;
+    }
+  }
+
+  .js,
+  .ts {
+    .obj {
+      color: #89deff;
+    }
+    .fun {
+      color: #dcdda4;
+    }
+    .key {
+      color: #3a9ddb;
+    }
+    .type {
+      color: #00ccaf;
+    }
+    .symbol {
+      color: #d081c3;
+    }
+    .string {
+      color: #d98e73;
+    }
+    .num {
       color: #afcfa4;
     }
   }
