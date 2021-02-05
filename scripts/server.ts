@@ -1,35 +1,50 @@
-const express = require('express');
+import express from 'express';
 import tomlJson from 'toml-json';
 import webpack from 'webpack';
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-Hot-middleware');
-import dev from './webpack.dev';
-const { exec } = require('child_process');
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackConfig from './webpack.server';
+import open from 'open';
+import util from 'util';
 
+const exec = util.promisify(require('child_process').exec);
 const app = express();
-const compiler = webpack(dev);
+const compiler = webpack(webpackConfig);
 const config = tomlJson({ fileUrl: './config.toml' });
 
 app.use(express.static('public')); // static
 
-// Tell express to use the webpack-dev-middleware and use the webpack.config.js
-// configuration file as a base.
+// app.get('*', function (req: any, res: unknown, next: any) {
+//   req.url = req.url === '/main.bundle.js' ? req.url : '/';
+//   next();
+// });
+
+// Tell express to use the webpack-dev-middleware and use the webpack.config.js configuration file as a base.
 app.use(
   webpackDevMiddleware(compiler, {
-    publicPath: (dev.output as any).publicPath,
+    publicPath: (webpackConfig.output as any).publicPath,
   })
 );
 
 app.use(webpackHotMiddleware(compiler));
 
-app.listen((config.server as any).port, function () {
-  console.log(`starting at http://localhost:${(config.server as any).port}`);
+const port = (config.server as any).port;
+app.listen(port, function () {
+  console.log(`starting at http://localhost:${port}`);
 });
 
-// press enter to update api json
+const execCmd = async (cmd: string) => {
+  const { stdout, stderr } = await exec(cmd);
+  console.log(stderr === '' ? stdout : stderr);
+};
+
 process.stdin.on('data', (data) => {
   if (data.toString() === '\n') {
-    exec('npm run api');
-    console.log('api update');
+    // press enter to update api json
+    console.log('api update...');
+    execCmd('yarn api');
+  } else if (data.toString() === '-o\n') {
+    // open url to view it in the browser
+    open(`http://localhost:${port}`);
   }
 });

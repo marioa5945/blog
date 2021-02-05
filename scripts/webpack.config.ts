@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { Configuration } from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 export default {
   mode: 'development',
@@ -14,12 +15,15 @@ export default {
     },
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+    }),
     new HtmlWebpackPlugin({
       template: 'template/index.html',
     }),
   ],
   output: {
-    filename: '[name].bundle.js',
+    filename: 'js/[name].bundle.js',
     path: resolve('.', 'dist'),
     publicPath: '/',
   },
@@ -29,16 +33,46 @@ export default {
         test: /\.s(a|c)ss$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: MiniCssExtractPlugin.loader,
           },
           {
             loader: 'css-loader',
+            options: { importLoaders: 2 },
           },
           {
-            loader: 'sass-loader',
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: ['autoprefixer'],
+              },
+            },
+          },
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name() {
+                if (process.env.NODE_ENV === 'development') {
+                  return 'img/[path][name].[ext]';
+                }
+                return 'img/[contenthash].[ext]';
+              },
+              limit: false,
+              esModule: false,
+            },
           },
         ],
       },
     ],
+  },
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    _: 'lodash',
   },
 } as Configuration;

@@ -27,6 +27,6 @@
       "@components/*": ["./src/components/*"]
     }
   },
-  "include": ["src/**/*"],
-  "types": ["typePatches"]
+  "files": ["./types/index.d.ts"],
+  "include": ["src/**/*"]
 }

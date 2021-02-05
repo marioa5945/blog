@@ -13,7 +13,6 @@ interface _router {
 interface ifsState {
   activeId: string;
   directory: Array<ifsDirectory>;
-  markdown: string;
 }
 
 interface ifsDirectory {
@@ -24,33 +23,22 @@ interface ifsDirectory {
 }
 
 function mapStateToProps(state: { [key: string]: unknown }) {
-  return { blog: state.blog };
+  return { demos: state.demos };
 }
 
 @(connect(mapStateToProps) as any)
-export default class PageBlog extends React.PureComponent<_router, ifsState> {
+export default class PageDemos extends React.PureComponent<_router, ifsState> {
   constructor(props: _router) {
     super(props);
 
     this.state = {
       activeId: '',
       directory: [],
-      markdown: '',
     };
   }
 
   async componentDidMount(): Promise<void> {
-    try {
-      const directory = await axios.get('/api/blog/directory.json');
-      this.setState({ directory: directory.data });
-
-      const value = /\/blog\/(.+)/.exec(window.location.href);
-      if (value) {
-        this.handleNavClick(value[1]);
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    //
   }
 
   /**
@@ -60,20 +48,15 @@ export default class PageBlog extends React.PureComponent<_router, ifsState> {
   handleNavClick = async (activeId: string): Promise<void> => {
     const { history } = this.props;
     if (activeId !== '') {
-      try {
-        const contentArr = await axios.get(`/api/blog/${activeId}.json`);
-        this.setState({ markdown: contentArr.data.join('\n') });
-      } catch (error) {
-        console.error(error);
-      }
+      //
     }
 
     this.setState({ activeId: activeId });
-    history.push(activeId === '' ? '/blog' : `/blog/${activeId}`);
+    history.push(activeId === '' ? '/demos' : `/demos/${activeId}`);
   };
 
   render(): JSX.Element {
-    const { markdown, directory, activeId } = this.state;
+    const { directory, activeId } = this.state;
     const { history } = this.props;
 
     return (
@@ -82,7 +65,7 @@ export default class PageBlog extends React.PureComponent<_router, ifsState> {
         <Nav
           title={
             <>
-              mario <span>a</span>&apos;s blog
+              mario <span>a</span>&apos;s demos
             </>
           }
           list={directory}
@@ -90,9 +73,7 @@ export default class PageBlog extends React.PureComponent<_router, ifsState> {
           handleLogoClick={() => history.push('/')}
           activeId={activeId}
         />
-        <main>
-          <ReactMd markdown={markdown} />
-        </main>
+        <main></main>
       </div>
     );
   }

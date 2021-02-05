@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import './style.scss';
 
 interface ifsDirectory {
@@ -7,9 +7,7 @@ interface ifsDirectory {
   date: string;
   description: string;
 }
-/**
- * hh
- */
+
 interface ifsProps {
   title: React.ReactElement;
   list: Array<ifsDirectory>;
@@ -18,11 +16,16 @@ interface ifsProps {
   handleLogoClick: () => void;
 }
 
+/**
+ * nav
+ * @param title React.ReactElement
+ * @param list Array<{id: string, title: string}>
+ * @param activeId string
+ * @param handleNavClick (activeId: string) => void
+ * @param handleLogoClick () => void
+ * @returns React.ReactElement
+ */
 export default class Nav extends React.PureComponent<ifsProps> {
-  /**
-   * nav
-   * @param props
-   */
   constructor(props: ifsProps) {
     super(props);
   }

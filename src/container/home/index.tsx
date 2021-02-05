@@ -44,9 +44,9 @@ export default class PageHome extends React.PureComponent<_router, ifsState> {
           <nav>
             <a onClick={() => history.push('/blog')}>blog</a>
             <a href="https://github.com/marioa5945">github</a>
-            <a href="/demos">demos</a>
+            <a onClick={() => history.push('/demos')}>demos</a>
             <a href="https://twitter.com/marioa49886908">twitter</a>
-            <a href="/resume">resume</a>
+            <a onClick={() => history.push('/resume')}>resume</a>
           </nav>
         </main>
       </div>

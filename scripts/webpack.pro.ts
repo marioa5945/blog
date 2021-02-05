@@ -2,21 +2,13 @@ import config from './webpack.config';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 
+delete config.devtool;
 config.mode = 'production';
-config.devtool = false;
-(config.output as any).filename = '[name].[contenthash].bundle.js';
+(config.output as any).filename = 'js/[name].[contenthash].bundle.js';
 (config.module as any).rules.push({
   test: /\.(js|jsx|ts|tsx)$/,
   exclude: /node-modules/,
-  use: [
-    {
-      loader: 'babel-loader',
-      options: {
-        cacheDirectory: true,
-        cacheCompression: false,
-      },
-    },
-  ],
+  use: ['babel-loader'],
 });
 (config.plugins as any).push(new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }));
 (config.plugins as any).push(
