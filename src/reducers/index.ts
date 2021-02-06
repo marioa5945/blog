@@ -1,5 +1,5 @@
 import { createStore, combineReducers } from 'redux';
-import { blog } from './blog';
+import blog from './blog';
 import { deoms } from './deoms';
 import { composeWithDevTools } from 'redux-devtools-extension';
 

@@ -1,31 +1,43 @@
-export const INCREMENT = 'INCREMENT';
-export const REDUCE = 'REDUCE';
+import { atBlog } from '../actionType';
 
-export const incrementAction = { type: INCREMENT, count: 2 };
-export const reduceAction = { type: REDUCE, count: 1 };
-
-interface ReduxState {
-  num: number;
-}
-
-interface Action {
+interface ifsAction {
   type: string;
-  count: number;
+  payload: ifsReducerState;
 }
 
-const initData = {
-  num: 0,
+interface ifsDirectory {
+  id: string;
+  title: string;
+  date: string;
+  description: string;
+}
+
+interface ifsInfo {
+  id: string;
+  info: string;
+}
+
+interface ifsReducerState {
+  directoryList: Array<ifsDirectory>;
+  infoList: Array<ifsInfo>;
+  idList: Array<string>;
+  info: ifsInfo;
+}
+
+const initData: ifsReducerState = {
+  directoryList: [],
+  infoList: [],
+  idList: [],
+  info: { id: '', info: '' },
 };
 
-const blog = (state: ReduxState = initData, action: Action): ReduxState => {
+export default (state: ifsReducerState = initData, action: ifsAction): ifsReducerState => {
   switch (action.type) {
-    case INCREMENT:
-      return { num: state.num + action.count };
-    case REDUCE:
-      return { num: state.num - action.count };
+    case atBlog.BLOG_DIRECTORY_REDUCER: {
+      const directoryList = action.payload.directoryList;
+      return { ...state, directoryList };
+    }
     default:
       return state;
   }
 };
-
-export { blog };

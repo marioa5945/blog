@@ -1,48 +1,43 @@
 import React from 'react';
-import H from 'history';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import ReactMd from '@components/react-md/';
 import Nav from '@components/nav/';
 import './style.scss';
+import { atBlog } from '@src/actionType';
 
-interface _router {
-  history: H.History<H.LocationState>;
-}
-
+/**
+ * ifsState
+ * @property activeId: string
+ */
 interface ifsState {
   activeId: string;
-  directory: Array<ifsDirectory>;
   markdown: string;
 }
 
-interface ifsDirectory {
-  id: string;
-  title: string;
-  date: string;
-  description: string;
-}
-
-function mapStateToProps(state: { [key: string]: unknown }) {
+@(connect((state: { [key: string]: unknown }) => {
   return { blog: state.blog };
-}
-
-@(connect(mapStateToProps) as any)
-export default class PageBlog extends React.PureComponent<_router, ifsState> {
-  constructor(props: _router) {
+}) as any)
+export default class PageBlog extends React.PureComponent<ifsPage, ifsState> {
+  constructor(props: ifsPage) {
     super(props);
 
     this.state = {
       activeId: '',
-      directory: [],
       markdown: '',
     };
   }
 
   async componentDidMount(): Promise<void> {
+    const { dispatch } = this.props;
+
     try {
-      const directory = await axios.get('/api/blog/directory.json');
-      this.setState({ directory: directory.data });
+      const directoryList = await axios.get('/api/blog/directory.json');
+
+      dispatch({
+        type: atBlog.BLOG_DIRECTORY_REDUCER,
+        payload: { directoryList: directoryList.data },
+      });
 
       const value = /\/blog\/(.+)/.exec(window.location.href);
       if (value) {
@@ -73,7 +68,7 @@ export default class PageBlog extends React.PureComponent<_router, ifsState> {
   };
 
   render(): JSX.Element {
-    const { markdown, directory, activeId } = this.state;
+    const { markdown, activeId } = this.state;
     const { history } = this.props;
 
     return (
@@ -85,7 +80,7 @@ export default class PageBlog extends React.PureComponent<_router, ifsState> {
               mario <span>a</span>&apos;s blog
             </>
           }
-          list={directory}
+          list={_.get(this.props, 'blog.directoryList') ?? []}
           handleNavClick={this.handleNavClick}
           handleLogoClick={() => history.push('/')}
           activeId={activeId}

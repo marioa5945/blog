@@ -27,6 +27,6 @@
       "@components/*": ["./src/components/*"]
     }
   },
-  "files": ["./types/index.d.ts"],
+  "files": ["./types/index.d.ts", "./types/other.d.ts"],
   "include": ["src/**/*"]
 }
