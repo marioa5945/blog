@@ -1,8 +1,6 @@
 import React from 'react';
 import H from 'history';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import ReactMd from '@components/react-md/';
 import Nav from '@components/nav/';
 import './style.scss';
 

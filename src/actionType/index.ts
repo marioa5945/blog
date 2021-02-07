@@ -1,3 +1,1 @@
-import * as atBlog from './blog';
-
-export { atBlog };
+export * as atBlog from './blog';

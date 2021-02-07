@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import ReactMd from '@components/react-md/';
 import Nav from '@components/nav/';
 import './style.scss';
@@ -32,17 +31,14 @@ export default class PageBlog extends React.PureComponent<ifsPage, ifsState> {
     const { dispatch } = this.props;
 
     try {
-      const directoryList = await axios.get('/api/blog/directory.json');
-
       dispatch({
-        type: atBlog.BLOG_DIRECTORY_REDUCER,
-        payload: { directoryList: directoryList.data },
+        type: atBlog.BLOG_DIRECTORY_EPIC,
       });
 
-      const value = /\/blog\/(.+)/.exec(window.location.href);
-      if (value) {
-        this.handleNavClick(value[1]);
-      }
+      // const value = /\/blog\/(.+)/.exec(window.location.href);
+      // if (value) {
+      //   this.handleNavClick(value[1]);
+      // }
     } catch (error) {
       console.error(error);
     }
@@ -55,12 +51,12 @@ export default class PageBlog extends React.PureComponent<ifsPage, ifsState> {
   handleNavClick = async (activeId: string): Promise<void> => {
     const { history } = this.props;
     if (activeId !== '') {
-      try {
-        const contentArr = await axios.get(`/api/blog/${activeId}.json`);
-        this.setState({ markdown: contentArr.data.join('\n') });
-      } catch (error) {
-        console.error(error);
-      }
+      // try {
+      //   const contentArr = await axios.get(`/api/blog/${activeId}.json`);
+      //   this.setState({ markdown: contentArr.data.join('\n') });
+      // } catch (error) {
+      //   console.error(error);
+      // }
     }
 
     this.setState({ activeId: activeId });
