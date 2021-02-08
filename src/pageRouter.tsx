@@ -8,7 +8,6 @@ const history = createHashHistory();
 
 const PageHome = React.lazy(() => import('./container/home/'));
 const PageBlog = React.lazy(() => import('./container/blog/'));
-const PageDemos = React.lazy(() => import('./container/demos/'));
 const Page404 = React.lazy(() => import('./container/status/'));
 import Loading from '@components/loading/';
 
@@ -20,7 +19,6 @@ const PageRouter: React.FC = () => {
           <Switch>
             <Route exact={true} path={'/'} component={PageHome} />
             <Route path={'/blog'} component={PageBlog} />
-            <Route path={'/demos'} component={PageDemos} />
             <Route component={Page404} />
           </Switch>
         </Router>

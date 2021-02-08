@@ -1,9 +1,9 @@
 import { atBlog } from '../actionType';
 import { map, mergeMap } from 'rxjs/operators';
-import { ajax } from 'rxjs/ajax';
 import { Observable } from 'rxjs';
 import { ofType, ActionsObservable } from 'redux-observable';
 import { Action } from 'redux';
+import { apiBlog } from '@src/api';
 
 export const blogEpic = (
   action$: ActionsObservable<Action>
@@ -13,11 +13,10 @@ export const blogEpic = (
     directoryList: unknown;
   };
 }> => {
-  console.log(action$);
   return action$.pipe(
     ofType(atBlog.BLOG_DIRECTORY_EPIC),
     mergeMap(() =>
-      ajax.getJSON('/api/blog/directory.json').pipe(
+      apiBlog.apiBlogDirectoryGet.pipe(
         map((response) => {
           return { type: atBlog.BLOG_DIRECTORY_REDUCER, payload: { directoryList: response } };
         })
