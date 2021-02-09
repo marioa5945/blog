@@ -22,7 +22,7 @@ $ yarn start
 ```
 
 Runs the app in the development mode.\
-Input **-o** and press **ENTER** open [http://localhost:3000](http://localhost:3000) to view it in the browser, or manually open it.
+Input **-o** and press **ENTER** open [http://localhost:9001](http://localhost:9001) to view it in the browser, or manually open it.
 
 Only press **ENTER** is update blog's data.
 
