@@ -24,7 +24,7 @@ export default {
   ],
   output: {
     filename: 'js/[name].bundle.js',
-    path: resolve('.', 'dist'),
+    path: resolve('.', 'build'),
     publicPath: '/',
   },
   module: {

@@ -1,4 +1,4 @@
 import { combineEpics } from 'redux-observable';
-import { blogEpic } from './blog';
+import blog from './blog';
 
-export default combineEpics(blogEpic);
+export default combineEpics(...blog);

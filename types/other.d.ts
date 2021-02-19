@@ -6,9 +6,7 @@ declare global {
   declare interface ifsPage {
     history: History<unknown>;
     dispatch: Dispatch;
-    store: Array<{
-      [name]: unknown;
-    }>;
+    [name: string]: unknown;
   }
 
   declare const _: _lodash;

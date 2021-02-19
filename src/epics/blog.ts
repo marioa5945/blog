@@ -5,7 +5,7 @@ import { ofType, ActionsObservable } from 'redux-observable';
 import { Action } from 'redux';
 import { apiBlog } from '@src/api';
 
-export const blogEpic = (
+const blogEpic = (
   action$: ActionsObservable<Action>
 ): Observable<{
   type: string;
@@ -24,3 +24,29 @@ export const blogEpic = (
     )
   );
 };
+
+const blogInfoEpic = (
+  action$: ActionsObservable<Action>
+): Observable<{
+  type: string;
+  payload: {
+    info: {
+      id: string;
+      content: string;
+    };
+  };
+}> => {
+  return action$.pipe(
+    ofType(atBlog.BLOG_INFO_EPIC),
+    mergeMap((action) => {
+      const id = _.get(action, 'payload.id');
+      return apiBlog.apiBlogInfoGet(id).pipe(
+        map((response) => {
+          return { type: atBlog.BLOG_INFO_REDUCER, payload: { info: { id, content: (response as Array<string>).join('\n') } } };
+        })
+      );
+    })
+  );
+};
+
+export default [blogEpic, blogInfoEpic];

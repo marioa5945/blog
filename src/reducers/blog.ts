@@ -14,7 +14,7 @@ interface ifsDirectory {
 
 interface ifsInfo {
   id: string;
-  info: string;
+  content: string;
 }
 
 interface ifsReducerState {
@@ -28,14 +28,18 @@ const initData: ifsReducerState = {
   directoryList: [],
   infoList: [],
   idList: [],
-  info: { id: '', info: '' },
+  info: { id: '', content: '' },
 };
 
 export default (state: ifsReducerState = initData, action: ifsAction): ifsReducerState => {
   switch (action.type) {
     case atBlog.BLOG_DIRECTORY_REDUCER: {
-      const directoryList = action.payload.directoryList;
+      const { directoryList } = action.payload;
       return { ...state, directoryList };
+    }
+    case atBlog.BLOG_INFO_REDUCER: {
+      const { info } = action.payload;
+      return { ...state, info };
     }
     default:
       return state;
