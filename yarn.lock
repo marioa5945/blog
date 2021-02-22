@@ -936,10 +936,15 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@marioa/react-md@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npm.taobao.org/@marioa/react-md/download/@marioa/react-md-1.0.2.tgz?cache=0&sync_timestamp=1613760503432&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40marioa%2Freact-md%2Fdownload%2F%40marioa%2Freact-md-1.0.2.tgz#77c7a4c7001806d1f0235dcb60f7cdf79fef6afd"
-  integrity sha1-d8ekxwAYBtHwI13LYPfN95/vav0=
+"@marioa/import-lodash-loader@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/@marioa/import-lodash-loader/download/@marioa/import-lodash-loader-1.0.1.tgz?cache=0&sync_timestamp=1614013902155&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40marioa%2Fimport-lodash-loader%2Fdownload%2F%40marioa%2Fimport-lodash-loader-1.0.1.tgz#99219d51d735340f71f4cf376d6b78a9c5da0710"
+  integrity sha1-mSGdUdc1NA9x9M83bWt4qcXaBxA=
+
+"@marioa/react-md@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.npm.taobao.org/@marioa/react-md/download/@marioa/react-md-1.0.3.tgz#8485eb35d94bfe65ff688767c16569333b00331a"
+  integrity sha1-hIXrNdlL/mX/aIdnwWVpMzsAMxo=
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"

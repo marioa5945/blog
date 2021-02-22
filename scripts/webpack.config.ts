@@ -1,5 +1,4 @@
 import { resolve } from 'path';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { Configuration } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
@@ -17,9 +16,6 @@ export default {
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
-    }),
-    new HtmlWebpackPlugin({
-      template: 'template/index.html',
     }),
   ],
   output: {
@@ -73,6 +69,5 @@ export default {
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM',
-    _: 'lodash',
   },
 } as Configuration;

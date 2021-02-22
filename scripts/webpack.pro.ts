@@ -1,14 +1,15 @@
 import config from './webpack.config';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 delete config.devtool;
 config.mode = 'production';
 (config.output as any).filename = 'js/[name].[contenthash].bundle.js';
 (config.module as any).rules.push({
-  test: /\.(js|jsx|ts|tsx)$/,
+  test: /\.(ts|tsx)$/,
   exclude: /node-modules/,
-  use: ['babel-loader'],
+  use: ['babel-loader', '@marioa/import-lodash-loader'],
 });
 (config.plugins as any).push(new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }));
 (config.plugins as any).push(
@@ -22,6 +23,9 @@ config.mode = 'production';
         },
       },
     ],
+  }),
+  new HtmlWebpackPlugin({
+    template: 'template/index.html',
   })
 );
 config.optimization = {
