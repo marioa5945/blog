@@ -20,6 +20,9 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
   new webpack.HotModuleReplacementPlugin(),
   new HtmlWebpackPlugin({
     template: 'template/dev.html',
+  }),
+  new webpack.DefinePlugin({
+    remoteServer: '"http://localhost:8080/"',
   })
 );
 config.entry = ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', './src/app.tsx'];

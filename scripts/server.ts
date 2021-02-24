@@ -42,7 +42,7 @@ process.stdin.on('data', (data) => {
   if (data.toString() === '\n') {
     // press enter to update api json
     console.log('api update...');
-    execCmd('yarn api');
+    execCmd('yarn blog');
   } else if (data.toString() === '-o\n') {
     // open url to view it in the browser
     open(`http://localhost:${port}`);

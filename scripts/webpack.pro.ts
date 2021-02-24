@@ -1,4 +1,5 @@
 import config from './webpack.config';
+import webpack from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -26,6 +27,9 @@ config.mode = 'production';
   }),
   new HtmlWebpackPlugin({
     template: 'template/index.html',
+  }),
+  new webpack.DefinePlugin({
+    remoteServer: '"https://marioa5945.github.io/"',
   })
 );
 config.optimization = {

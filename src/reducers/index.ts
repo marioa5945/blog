@@ -10,10 +10,7 @@ const epicMiddleware = createEpicMiddleware();
 // Combine multiple reducers
 const rootReducers = combineReducers({ blog, deoms });
 
-const store =
-  process.env.NODE_ENV === 'production'
-    ? createStore(rootReducers, applyMiddleware(epicMiddleware))
-    : createStore(rootReducers, composeWithDevTools(applyMiddleware(epicMiddleware)));
+const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(epicMiddleware)));
 
 epicMiddleware.run(rootEpic);
 
