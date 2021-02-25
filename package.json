@@ -6,7 +6,7 @@
   "main": "./src/app.tsx",
   "scripts": {
     "start": "ts-node ./scripts/node.server.ts",
-    "build": "webpack --config ./scripts/webpack.pro.ts",
+    "build": "yarn blog && webpack --config ./scripts/webpack.pro.ts",
     "blog": "ts-node ./scripts/node.api.ts",
     "analyzer": "webpack --config ./scripts/webpack.analyzer.ts"
   },
