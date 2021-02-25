@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { Configuration } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
   mode: 'development',
@@ -17,11 +18,14 @@ export default {
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
     }),
+    new HtmlWebpackPlugin({
+      template: 'template/index.html',
+      publicPath: '/',
+    }),
   ],
   output: {
     filename: 'js/[name].bundle.js',
     path: resolve('.', 'build'),
-    publicPath: '/',
   },
   module: {
     rules: [

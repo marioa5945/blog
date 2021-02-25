@@ -1,7 +1,8 @@
+import webpack from 'webpack';
 import config from './webpack.config';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+
 import { container } from 'webpack';
 const { ModuleFederationPlugin } = container;
 
@@ -30,8 +31,8 @@ config.mode = 'production';
       },
     ],
   }),
-  new HtmlWebpackPlugin({
-    template: 'template/index.html',
+  new webpack.DefinePlugin({
+    apiPath: '"/blog"',
   })
 );
 config.optimization = {

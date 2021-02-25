@@ -15,10 +15,6 @@ const main = () => {
   rimraf.sync(targetPath);
   // create new api folder
   fs.mkdirSync(targetPath);
-  // set new api folder url
-  targetPath += '/blog';
-  // create new api folder
-  fs.mkdirSync(targetPath);
 
   // JSON of the directory
   const directory = mdList.map((n: string) => {

@@ -16,5 +16,5 @@ const responseHandle = <T>(observable: Observable<T>): Observable<T> => {
 };
 
 export const getJSON = <T>(url: string): Observable<T> => {
-  return responseHandle(ajax.getJSON(url, header));
+  return responseHandle(ajax.getJSON(apiPath + url, header));
 };
