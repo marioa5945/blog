@@ -3611,14 +3611,6 @@ onetime@^5.1.2:
   dependencies:
     mimic-fn "^2.1.0"
 
-open@^7.4.0:
-  version "7.4.0"
-  resolved "https://registry.npm.taobao.org/open/download/open-7.4.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fopen%2Fdownload%2Fopen-7.4.0.tgz#ad95b98f871d9acb0ec8fecc557082cc9986626b"
-  integrity sha1-rZW5j4cdmssOyP7MVXCCzJmGYms=
-  dependencies:
-    is-docker "^2.0.0"
-    is-wsl "^2.1.1"
-
 opener@^1.5.2:
   version "1.5.2"
   resolved "https://registry.npm.taobao.org/opener/download/opener-1.5.2.tgz#5d37e1f35077b9dcac4301372271afdeb2a13598"
@@ -4342,10 +4334,10 @@ serve-static@1.14.1:
     parseurl "~1.3.3"
     send "0.17.1"
 
-server-print@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/server-print/-/server-print-1.0.3.tgz#e41d531b58de3dd68d565e336618f64dcdfe9fd7"
-  integrity sha512-/5woePiCIGjnRIuaDVo0a2+D/ObgBcFR7hzgt0N+zysaUmlGOt4kxdkwOzn8y7DPPtLFpCPSOi6GQ2BYtse2Vw==
+server-print@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npm.taobao.org/server-print/download/server-print-1.0.2.tgz#c78a13d2cb85a7e804bc4fdde1f441269cc6fbca"
+  integrity sha1-x4oT0suFp+gEvE/d4fRBJpzG+8o=
   dependencies:
     boxen "^5.0.0"
     chalk "^4.1.0"

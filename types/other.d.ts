@@ -10,6 +10,4 @@ declare global {
   }
 
   declare const _: _lodash;
-
-  declare const remoteServer: string;
 }

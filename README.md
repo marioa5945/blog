@@ -1,9 +1,6 @@
-# Mario A
+# Blog
 
-This project include Component library and blog
-
-- convention over configuration
-- concise yet expressive
+Used for the blog program on the github website
 
 ## Installation
 
@@ -11,45 +8,35 @@ This project include Component library and blog
 $ yarn install
 ```
 
-## Available Scripts
+## Run
 
 In the project directory, you can run:
-
-### `yarn start`
 
 ```
 $ yarn start
 ```
 
 Runs the app in the development mode.\
-Input **-o** and press **ENTER** open [http://localhost:9001](http://localhost:9001) to view it in the browser, or manually open it.
-
-Only press **ENTER** is update blog's data.
+Paste [http://localhost:9001](http://localhost:9001) to view it in the browser, since the path has been copied automatically.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
-
-### `yarn build`
 
 ```
 $ yarn build
 ```
 
-Builds the app for production to the `dist` folder.\
+Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
-
-### `yarn blog`
 
 ```
 $ yarn blog
 ```
 
 Update blog's data, create blog-json files of the `public/api/` folder from markdown files of the `data` folder.
-
-### `yarn analysis`
 
 ```
 $ yarn analysis

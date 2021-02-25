@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ReactMd from '@marioa/react-md';
-import Nav from '@components/nav/';
+import Nav from './nav';
 import './style.scss';
 import { atBlog } from '@src/actionType';
 

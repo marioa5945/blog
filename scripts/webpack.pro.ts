@@ -1,8 +1,9 @@
 import config from './webpack.config';
-import webpack from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { container } from 'webpack';
+const { ModuleFederationPlugin } = container;
 
 delete config.devtool;
 config.mode = 'production';
@@ -14,22 +15,23 @@ config.mode = 'production';
 });
 (config.plugins as any).push(new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }));
 (config.plugins as any).push(
+  new ModuleFederationPlugin({
+    name: 'blog',
+    filename: 'js/remoteEntry.js',
+    exposes: {
+      './router': './src/pageRouter',
+    },
+  }),
   new CopyPlugin({
     patterns: [
       {
         from: './public',
         to: './',
-        globOptions: {
-          ignore: ['**/.DS_Store'],
-        },
       },
     ],
   }),
   new HtmlWebpackPlugin({
     template: 'template/index.html',
-  }),
-  new webpack.DefinePlugin({
-    remoteServer: '"https://marioa5945.github.io/"',
   })
 );
 config.optimization = {
