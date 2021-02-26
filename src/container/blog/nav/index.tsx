@@ -35,7 +35,7 @@ export default class Nav extends React.PureComponent<ifsProps> {
 
     return (
       <nav className={activeId === '' ? 'leftNav' : 'leftNav active'}>
-        <img src={'/img/logo.png'} onClick={() => handleLogoClick()} />
+        <img src={'./img/logo.png'} onClick={() => handleLogoClick()} />
         <h3 onClick={() => handleNavClick('')}>{title}</h3>
         {list.length > 0
           ? list.map((n) => (
