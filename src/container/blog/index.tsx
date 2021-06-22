@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import ReactMd from './react-md';
 import Nav from './nav';
@@ -15,7 +14,7 @@ interface ifsState {
 
 @(connect((state: { [key: string]: unknown }) => {
   return { blog: state.blog };
-}) as any)
+}) as (arg: unknown) => void ) 
 export default class PageBlog extends React.PureComponent<ifsPage, ifsState> {
   constructor(props: ifsPage) {
     super(props);

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import { createHashHistory } from 'history';
 import { Provider } from 'react-redux';
