@@ -1,0 +1,368 @@
+img {
+  border: none;
+}
+
+body,
+a,
+input,
+button {
+  font-family: PingFangSC-Regular, sans-serif;
+  outline: none;
+  border: none;
+  text-decoration: none;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+font,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dd,
+dl,
+dt,
+li,
+ol,
+ul,
+fieldset,
+form,
+label,
+legend {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-family: PingFangSC-Regular, sans-serif;
+  font-size: inherit;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  cursor: pointer;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+table {
+  text-align: center;
+  vertical-align: middle;
+}
+
+th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+element {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+
+html,
+body,
+form,
+fieldset,
+p,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  -webkit-text-size-adjust: none;
+}
+
+input {
+  line-height: normal;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+input,
+textarea {
+  border: 0;
+  -webkit-appearance: none;
+}
+
+div,
+a,
+img {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+@media (max-width: 1920px) {
+  html {
+    font-size: 256px;
+  }
+}
+
+@media (max-width: 1842px) {
+  html {
+    font-size: 245.6px;
+  }
+}
+
+@media (max-width: 1762px) {
+  html {
+    font-size: 234.93px;
+  }
+}
+
+@media (max-width: 1682px) {
+  html {
+    font-size: 224.26px;
+  }
+}
+
+@media (max-width: 1602px) {
+  html {
+    font-size: 213.6px;
+  }
+}
+
+@media (max-width: 1522px) {
+  html {
+    font-size: 202.93px;
+  }
+}
+
+@media (max-width: 1442px) {
+  html {
+    font-size: 192.26px;
+  }
+}
+
+@media (max-width: 1362px) {
+  html {
+    font-size: 181.6px;
+  }
+}
+
+@media (max-width: 1282px) {
+  html {
+    font-size: 170.93px;
+  }
+}
+
+@media (max-width: 1202px) {
+  html {
+    font-size: 160.26px;
+  }
+}
+
+@media (max-width: 1122px) {
+  html {
+    font-size: 149.6px;
+  }
+}
+
+@media (max-width: 1042px) {
+  html {
+    font-size: 138.93px;
+  }
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 136.53px;
+  }
+}
+
+@media (max-width: 962px) {
+  html {
+    font-size: 128.26px;
+  }
+}
+
+@media (max-width: 952px) {
+  html {
+    font-size: 126.93px;
+  }
+}
+
+@media (max-width: 902px) {
+  html {
+    font-size: 120.26px;
+  }
+}
+
+@media (max-width: 882px) {
+  html {
+    font-size: 117.6px;
+  }
+}
+
+@media (max-width: 802px) {
+  html {
+    font-size: 106.93px;
+  }
+}
+
+@media (max-width: 775px) {
+  html {
+    font-size: 103.33px;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 102.4px;
+  }
+}
+
+@media (max-width: 750px) {
+  html {
+    font-size: 100px;
+  }
+}
+
+@media (max-width: 738px) {
+  html {
+    font-size: 98.4px;
+  }
+}
+
+@media (max-width: 734px) {
+  html {
+    font-size: 97.86px;
+  }
+}
+
+@media (max-width: 733px) {
+  html {
+    font-size: 97.73px;
+  }
+}
+
+@media (max-width: 669px) {
+  html {
+    font-size: 89.2px;
+  }
+}
+
+@media (max-width: 642px) {
+  html {
+    font-size: 85.6px;
+  }
+}
+
+@media (max-width: 602px) {
+  html {
+    font-size: 80.26px;
+  }
+}
+
+@media (max-width: 570px) {
+  html {
+    font-size: 76px;
+  }
+}
+
+@media (max-width: 535px) {
+  html {
+    font-size: 71.33px;
+  }
+}
+
+@media (max-width: 455px) {
+  html {
+    font-size: 60.66px;
+  }
+}
+
+@media (max-width: 437px) {
+  html {
+    font-size: 58.26px;
+  }
+}
+
+@media (max-width: 414px) {
+  html {
+    font-size: 55.2px;
+  }
+}
+
+@media (max-width: 412px) {
+  html {
+    font-size: 54.93px;
+  }
+}
+
+@media (max-width: 386px) {
+  html {
+    font-size: 51.46px;
+  }
+}
+
+@media (max-width: 375px) {
+  html {
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 370.8px) {
+  html {
+    font-size: 49.44px;
+  }
+}
+
+@media (max-width: 360px) {
+  html {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 320px) {
+  html {
+    font-size: 42.66px;
+  }
+}
